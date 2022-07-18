@@ -41,13 +41,14 @@
     background-color: #fff;
     height: 100%;
     max-width: 450px;
-    padding-top: 3rem;
+    padding-top: 2rem;
     padding-bottom: 3rem;
 }
 
 .register-page-content {
     background-color: #fff;
     border-radius: 12px;
+    overflow: hidden;
 }
 
 .register-form {

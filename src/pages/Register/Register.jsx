@@ -154,7 +154,7 @@ const Register = () => {
 
 							<div className="social-register mt-5 text-center">
 								<p>{t('content.otherWay')}</p>
-								<div className="d-flex gap-4 justify-content-center">
+								<div className="d-flex gap-4 justify-content-center mt-3">
 									<div className="facebook-conn">
 										<BsFacebook fontSize="2.6rem" color="#1877F2" />
 									</div>

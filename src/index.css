@@ -249,5 +249,15 @@ input[type='text']::placeholder {
 
 .scroll-bar:hover::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-color: #D1D6DB
+    background-color: #d1d6db;
+}
+
+.Toastify__toast-body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.4;
+    font-size: 1.3rem !important;
+}
+
+.dropdown-language {
+    font-size: 1.5rem;
 }
