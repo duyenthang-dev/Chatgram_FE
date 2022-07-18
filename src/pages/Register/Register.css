@@ -41,8 +41,8 @@
     background-color: #fff;
     height: 100%;
     max-width: 450px;
-    padding-top: 5rem;
-    padding-bottom: 4rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 .register-page-content {
@@ -57,7 +57,7 @@
 
 .register-input input {
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .dropdown-language {

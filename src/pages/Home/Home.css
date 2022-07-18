@@ -105,6 +105,11 @@
     /* margin-right: 1rem;
     margin-left: 1rem; */
     width: 98%;
+    
+}
+
+#sidebar-search{
+    border-left: none;
 }
 
 .sidebar-search > *:last-child {

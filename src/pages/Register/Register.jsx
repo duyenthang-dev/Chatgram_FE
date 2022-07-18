@@ -94,11 +94,11 @@ const Register = () => {
 							<option value='en'>{t('content.english')}</option>
 						</select>
 					</div>
-					<Row className="my-auto justify-content-center h-100 w-100 px-5 py-5">
+					<Row className="my-auto justify-content-center h-100 w-100 px-3 py-4">
 						<div className="register-form-wrapper register-input">
 							<h2 className="text-center mb-4">{t('content.registerHeader')}</h2>
 							<form className="register-form" onSubmit={handleSubmit(onSubmit)}>
-								<div className="email-field mb-3">
+								<div className="email-field mb-4">
 									<label htmlFor="fullname" className="d-block mb-2">
 										{t('content.fullname')}
 									</label>
@@ -106,12 +106,12 @@ const Register = () => {
 										type="text" 
 										name="fullname" 
 										id="fullname" 
-										className="inp-fullname w-100" 
+										className="w-100 inp-email" 
 										{...register('fullname')}
 										onChange={(e) => handleChange(e)} />
 								</div>
 
-								<div className="email-field mb-3">
+								<div className="email-field mb-4">
 									<label htmlFor="" className="d-block mb-2">
 										Email
 									</label>
@@ -124,7 +124,7 @@ const Register = () => {
 										onChange={(e) => handleChange(e)} />
 								</div>
 
-								<div className="password-field mb-3">
+								<div className="password-field mb-4">
 									<label htmlFor="" className="d-block mb-2">
 										{t('content.password')}
 									</label>
@@ -137,7 +137,7 @@ const Register = () => {
 										onChange={(e) => handleChange(e)} />
 								</div>
 
-								<div className="password-field mb-3">
+								<div className="password-field mb-4">
 									<label htmlFor="" className="d-block mb-2">
 										{t('content.confirmPassword')}
 									</label>
@@ -149,7 +149,7 @@ const Register = () => {
 										onChange={(e) => handleChange(e)} />
 								</div>
 
-								<input type="submit" value={t('content.register')} className="d-inline-block w-100" />
+								<input type="submit" value={t('content.register')} className="d-inline-block w-100 btn-primary btn-login" />
 							</form>
 
 							<div className="social-register mt-5 text-center">
