@@ -105,10 +105,9 @@
     /* margin-right: 1rem;
     margin-left: 1rem; */
     width: 98%;
-    
 }
 
-#sidebar-search{
+#sidebar-search {
     border-left: none;
 }
 
@@ -636,6 +635,45 @@
 .right-sidebar-container {
     max-width: 350px !important;
 }
+
+@media only screen and (max-width: 576px) {
+    /* .navbar-icon > * {
+        font-size: 20px;
+    } */
+    .navbar-container {
+        align-items: center;
+        height: 60px;
+    }
+
+    .navbar-wrapper > *:nth-child(1) {
+        display: none !important;
+    }
+
+    .navbar-wrapper >:last-child {
+        display: none !important;
+    }
+    .modal-250 {
+        width: 330px;
+        margin: 0 auto;
+    }
+    .modal-400 {
+        width: 330px;
+        margin: 0 auto;
+    }
+
+    .btn-primary {
+        padding: 7px 15px;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        inset: auto 0px 0px auto;
+        margin: 0px;
+        transform: translate3d(-10.575px, -150.2px, 0px) !important;
+        overflow: hidden;
+    }
+}
+
 @media only screen and (max-width: 900px) {
     .getstarted-container {
         display: none;
@@ -649,6 +687,7 @@
         height: unset;
         position: fixed;
         bottom: 0;
+        height: 60px;
     }
     .navbar-container div {
         padding-top: 8px !important;
@@ -657,17 +696,18 @@
 
     .navbar-wrapper {
         justify-content: space-between;
+        align-items: center;
     }
 
     .sidebar-container {
         min-width: 100%;
-        height: calc(100vh - 70px);
-        overflow-y: auto;
+        height: calc(100vh - 60px);
+        /* overflow-y: auto; */
         padding-right: 2rem;
         padding-left: 2rem;
     }
 
-    .navbar-wrapper div {
+    .navbar-wrapper> div {
         max-width: 50px;
         max-height: 50px;
     }
@@ -699,15 +739,28 @@
     }
 
     .input-chat-icon {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
     }
 
     .chat-conversation {
         display: block;
         margin-top: var(--header-height-mobile);
     }
+
+    .chat-list {
+        height: 485px;
+    }
+
+    .modal-profile-container {
+        width: 350px;
+    }
+
+    #chatinput-form div > :nth-child(3) > :first-child {
+        display: none;
+    }
 }
+
 .over-modal-container {
     width: 100vw;
     height: 100vh;
