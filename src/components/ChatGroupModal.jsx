@@ -46,7 +46,6 @@ const ChatGroupModal = (props) => {
     };
 
     const onSearching = (e) => {
-        // if (!e.target.value) return;
         const tempArr = props.listuser.filter(
             (elm) => elm.fullname.toLocaleLowerCase().includes(e.target.value.toLowerCase()) && elm._id !== user._id
         );
@@ -128,7 +127,6 @@ const ChatGroupModal = (props) => {
                                                 type="checkbox"
                                                 name="select-user"
                                                 id={e._id}
-                                                // checked={isChecked}
                                                 onChange={handleCheck}
                                                 user_id={user._id}
                                                 target_id={e._id}

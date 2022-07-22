@@ -22,10 +22,12 @@ const Home = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { user, isError } = useSelector((state) => state.user);
+    const { isOpenChatInfo } = useSelector((state) => state.chat);
     const [recentChat, setRecentChat] = useState(null);
     const [displayModal, setDisplayModal] = useState(false);
     const [screenchatClassName, setScreenchatClassName] = useState('d-flex');
     const [isSetting, setIsSetting] = useState(false);
+    const [onlineUsers, setOnlineUsers] = useState(null);
     useEffect(() => {
         dispatch(getUser());
     }, [dispatch]);
@@ -58,6 +60,12 @@ const Home = (props) => {
             socket.emit('get_list_rooms', user._id);
             socket.on('get-onlineUser', (data) => {
                 console.log(data);
+                const onlines = []
+                for(let [key, value] of Object.entries(data)) {
+                    onlines.push({name: value.fullname.split(' ').pop(), avatar: value.avatar});
+                }
+
+                setOnlineUsers(onlines)
             });
         }
     }, [dispatch, socket, user]);
@@ -99,12 +107,13 @@ const Home = (props) => {
                         )}{' '}
                     </Col>
                     <Col className="sidebar-container">
-                        {!user ? <Skeleton /> : <Sidebar recentChat={recentChat} />}
+                        {!user ? <Skeleton /> : <Sidebar recentChat={recentChat} onlineUsers={onlineUsers}/>}
                     </Col>
                     <Col className="chat-container w-100 overflow-hidden">{!user ? <Spinner /> : <Chat />}</Col>
-                    {/* <Col className="right-sidebar-container">
+
+                    <Col className={`right-sidebar-container ${isOpenChatInfo? "": "hidden" }`}>
                         <RightSidebar />
-                    </Col> */}
+                    </Col>
                 </Row>
                 {displayModal && (
                     <div className="over-modal-container">

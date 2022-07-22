@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import Row from 'react-bootstrap/Row';
 import { FaUserCircle } from 'react-icons/fa';
 import { BiChat, BiPhoneCall, BiMoon, BiLockOpen, BiLogOutCircle, BiSave, BiServer } from 'react-icons/bi';
-import { BsFillChatLeftTextFill } from 'react-icons/bs';
 import { FiSettings } from 'react-icons/fi';
 import { useSelector, useDispatch } from 'react-redux';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -11,6 +10,7 @@ import authService from './../services/authService';
 import { useNavigate } from 'react-router-dom';
 import SocketContext from './../context/SocketContext';
 import { resetAll as resetUserAll } from '../redux/userSlice';
+import { resetAll as resetChatAll } from '../redux/chatSlice';
 import logo from './../assets/img/logo-transparent.png'
 // import PropTypes from 'prop-types';
 const Navbar = (props) => {
@@ -22,6 +22,7 @@ const Navbar = (props) => {
     const onHandleLogout = () => {
         authService.logout();
         dispatch(resetUserAll());
+        dispatch(resetChatAll());
         navigate('/login');
         socket.emit("logout", (user));
         removeSocket()

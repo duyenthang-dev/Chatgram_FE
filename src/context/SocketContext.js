@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 const SocketContext = createContext();
 
 export const SocketProvider = ({ children }) => {
-    const SOCKET_URL = 'https://chatapp-server-dev.herokuapp.com/';
+    const SOCKET_URL = process.env.REACT_APP_SOCKET_ENDPOINT;
     let socketClient = io.connect(SOCKET_URL);
     const [socket, setSocket] = useState(socketClient);
 
@@ -12,7 +12,7 @@ export const SocketProvider = ({ children }) => {
     };
 
     const addSocket = () => {
-        const SOCKET_URL = 'https://chatapp-server-dev.herokuapp.com/';
+        const SOCKET_URL = process.env.REACT_APP_SOCKET_ENDPOINT;
         let socketClient = io.connect(SOCKET_URL);
         setSocket(socketClient);
     }

@@ -17,6 +17,8 @@ import Search from './Search';
 import ChatGroupModal from './ChatGroupModal';
 import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 import Skeleton from './Skeleton';
+import Slider from './Slider';
+
 const getChatInfo = (chats, userId) => {
     const result = [];
     chats.forEach((chat) => {
@@ -37,7 +39,22 @@ const getChatInfo = (chats, userId) => {
     return result;
 };
 
-function Sidebar({ recentChat }) {
+const renderOnlineUsers = (onlineUsers) => {
+    console.log(onlineUsers);
+    return onlineUsers.map((user, idx) => {
+        return (
+            <div className="onlineUser text-center mx-auto pb-3" key={idx}>
+                <div className="onlineUser-avt position-relative">
+                    <img src={user.avatar} alt="avatar" />
+                </div>
+
+                <p className="onlineUser-name mt-3">{user.name}</p>
+            </div>
+        );
+    });
+};
+
+function Sidebar({ recentChat, onlineUsers }) {
     const { socket } = useContext(SocketContext);
     const sidebarRef = useRef(null);
     const { user, isSearching } = useSelector((state) => state.user);
@@ -50,7 +67,8 @@ function Sidebar({ recentChat }) {
     const [searchText, setSearchText] = useState('');
     const navigate = useNavigate();
     const searchRef = useRef();
-
+    let arr = [];
+    if (onlineUsers) arr = renderOnlineUsers([...onlineUsers, ...onlineUsers, ...onlineUsers]);
     useEffect(() => {
         if (recentChat) {
             const userId = user._id;
@@ -193,7 +211,7 @@ function Sidebar({ recentChat }) {
         <Row className="pt-2">
             <UserModal show={addDirectChatShow} onHide={() => setAddDirectChatShow(false)} listuser={listUsers} />
             <ChatGroupModal show={addGroupChatShow} onHide={() => setAddGroupChatShow(false)} listuser={listUsers} />
-            <div className="sidebar-header pt-4 mb-4">
+            <div className="sidebar-header pt-3 mb-3">
                 <div className="d-flex justify-content-between align-items-center mb-4">
                     <h3>Chats</h3>
                     <div className="d-flex gap-4">
@@ -235,8 +253,11 @@ function Sidebar({ recentChat }) {
                     <Search listUsers={listUsers} searchText={searchText} />
                 ) : (
                     <>
-                        <div className="recent-chat my-4">
-                            <div className="d-flex justify-content-between align-items-center mb-4">
+                        <div className="onlineUser-container px-3 mt-3">
+                            {arr? <Slider slidersPerView={4} spaceBetween={10} list={arr} />: null}
+                        </div>
+                        <div className="recent-chat mt-4">
+                            <div className="d-flex justify-content-between align-items-center mb-2">
                                 <h4>{t('content.privateChatTitle')}</h4>
                             </div>
                             <ul className="chat-list scroll-bar">

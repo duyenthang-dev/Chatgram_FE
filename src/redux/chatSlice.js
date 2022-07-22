@@ -12,6 +12,7 @@ const initialState = {
     countNewMessages: {},
     lastMessage: null,
     newDirectChat: null,
+    isOpenChatInfo: false,
 };
 
 export const loadRoomMessage = createAsyncThunk('chat/loadRoomMessage', async (roomId, thunkAPI) => {
@@ -53,6 +54,7 @@ const chatSlice = createSlice({
             state.newDirectChat = null;
             // state.socket = null;
             state.lastMessage = null;
+            state.isOpenChatInfo = false;
         },
 
         selectChat: (state, action) => {
@@ -83,6 +85,14 @@ const chatSlice = createSlice({
         addChat: (state, action) => {
             state.newDirectChat = action.payload;
         },
+
+        openChatInfo: (state) => {
+            state.isOpenChatInfo = true;
+        },
+
+        closeChatInfo: (state) => {
+            state.isOpenChatInfo = false;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -114,5 +124,7 @@ export const {
     lastestMessage,
     addChat,
     resetAll,
+    openChatInfo,
+    closeChatInfo
 } = chatSlice.actions;
 export default chatSlice.reducer;

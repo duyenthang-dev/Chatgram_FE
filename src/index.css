@@ -178,9 +178,13 @@ button:hover {
 
 .badge {
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 10px;
 }
+
 
 .modal-250 {
     min-width: 310px;

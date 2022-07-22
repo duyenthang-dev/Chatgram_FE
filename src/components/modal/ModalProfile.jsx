@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
 import { useTranslation } from "react-i18next";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -25,8 +24,6 @@ const ModalProfile = ({setDisplayModal}) => {
     const [avatar, setAvatar] = useState(user.avatar)
     const [avatarPreview, setAvatarPreview] = useState(null)
     const [isSelectAvatar, setIsSelectAvatar] = useState(false)
-
-    const { isLoading, isSuccess, isError, message } = useSelector(state => state.auth);
 
     const [values, setValues] = useState({
         fullname: user.fullname,

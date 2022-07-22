@@ -22,7 +22,7 @@ import GetStarted from './GetStarted';
 import i18n from 'i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SocketContext from '../context/SocketContext';
-import { addNotifications, lastestMessage, loadMessageRoom } from './../redux/chatSlice';
+import { addNotifications, lastestMessage, loadMessageRoom, openChatInfo } from './../redux/chatSlice';
 import { getTimeline } from './../utils/dateFormat';
 import { v4 as uuidv4 } from 'uuid';
 // import PropTypes from 'prop-types';
@@ -127,7 +127,6 @@ const Chat = (props) => {
     const user = useSelector((state) => state.user);
 
     const onSendMessage = (data) => {
-
         if (!inp.current.value) return;
         let message = {
             author: user.user._id,
@@ -142,7 +141,7 @@ const Chat = (props) => {
         socket.emit('send_message', message);
 
         let isYours = true;
-      
+
         message = { ...message, isYours, createAt: message.createAt.toString() };
 
         dispatch(lastestMessage(message));
@@ -157,27 +156,27 @@ const Chat = (props) => {
         navigate('/');
     };
 
+    const onOpenChatInfo = () => {
+        dispatch(openChatInfo());
+    };
+
     useEffect(() => {
         socket.on('receive_message', (data) => {
             // console.log(data);
             if (data.body || data.avatar || user.user._id !== data.author) {
-                // setReceivedMessage((prev) => [...prev, data]);
-                // setListMessage((prev) => [...prev, data]);
-                // console.log(listMessage)
                 let isYours;
                 if (user.user._id === data.author._id) {
                     isYours = true;
                 } else isYours = false;
-                if (!isYours){
-                    console.log("hihi")
+                if (!isYours) {
+                    console.log('hihi');
                     setListMessage((prev) => [...prev, data]);
                 }
-                  
+
                 data = { ...data, isYours, createAt: data.createAt.toString() };
-                if (!isYours){
+                if (!isYours) {
                     dispatch(lastestMessage(data));
                 }
-                    
             }
         });
     }, [dispatch, socket, user.user._id]);
@@ -221,12 +220,7 @@ const Chat = (props) => {
                                 </div>
                                 <div className="me-4 position-relative">
                                     <div className="avatar-xs avatar">
-                                        <img
-                                            src={selectedChat?.targetAvatar}
-                                            alt=""
-                                            // className="rounded-circle"
-                                            // width="100%"
-                                        />
+                                        <img src={selectedChat?.targetAvatar} alt="" />
                                     </div>
 
                                     <div className="active-status online"></div>
@@ -251,7 +245,7 @@ const Chat = (props) => {
                                     <BiVideo fontSize="22px" />
                                 </li>
                                 <li key={4}>
-                                    <BsFillInfoCircleFill fontSize="22px" />
+                                    <BsFillInfoCircleFill fontSize="22px" onClick={onOpenChatInfo} />
                                 </li>
                                 <li key={5}>
                                     <BiDotsVerticalRounded fontSize="22px" />

@@ -6,16 +6,16 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import { FreeMode, Pagination } from 'swiper';
 
-const Slider = ({ slidersPerView = 1 ,list }) => {
+const Slider = ({ slidersPerView = 1 , spaceBetween = 0, list }) => {
     return (
         <div>
             <Swiper
                 slidesPerView={slidersPerView}
-                // spaceBetween={5}
+                spaceBetween={spaceBetween}
                 freeMode={true}
-                pagination={{
-                    clickable: true,
-                }}
+                // pagination={{
+                //     clickable: true,
+                // }}
                 modules={[FreeMode, Pagination]}
                 className="mySwiper"
             >
